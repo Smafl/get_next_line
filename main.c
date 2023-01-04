@@ -13,8 +13,11 @@ int main(void)
 	int read_size;
 
 	fd = open("text.txt", O_RDONLY);
-	text = malloc(sizeof(char) * 100);
-	read_size = read(fd, text, BUFFER);
+	text = malloc(sizeof(char) * 10);
+	if (text == NULL)
+		return (0);
+	read_size = read(fd, text, 9);
+	text[10] = '\0';
 	printf("fd %d\n read size %d\n", fd, read_size);
 	while (*text)
 	{
