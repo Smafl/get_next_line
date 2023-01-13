@@ -1,30 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
+/*   Updated: 2023/01/13 21:48:23 by ekulichk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 
-#define BUFFER 99
-
-int main(void)
+int	main(void)
 {
-	int fd;
-	// char text[BUFFER + 1];
-	char *text;
-	int read_size;
+	int		fd;
 
 	fd = open("text.txt", O_RDONLY);
-	text = malloc(sizeof(char) * 10);
-	if (text == NULL)
-		return (0);
-	read_size = read(fd, text, 9);
-	text[10] = '\0';
-	printf("fd %d\n read size %d\n", fd, read_size);
-	while (*text)
-	{
-		write(1, text, 1);
-		text++;
-	}
-	free(text);
+	get_next_line(fd);
+	close(fd);
 	// system("leaks a.out");
 	return (0);
 }
