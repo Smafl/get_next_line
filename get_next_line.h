@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:15:27 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/01/13 21:40:18 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:34:53 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 // get_next_line.c
 char	*get_next_line(int fd);
