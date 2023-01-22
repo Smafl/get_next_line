@@ -6,11 +6,11 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/01/17 18:03:58 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:05:52 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "private.h"
 
 void	*ft_memmove(void *dst, const void *src, int n)
 {
