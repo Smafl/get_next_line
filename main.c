@@ -22,13 +22,13 @@ int	main(void)
 	char	*result;
 
 	fd = open("text_2.txt", O_RDONLY);
-	for (int i = 0; i < 19; i++)
-	{
-		result = get_next_line(fd);
-		printf("%s\n", result);
-	}
-	// result = get_next_line(fd);
-	// printf("%s\n", result);
+	// for (int i = 0; i < 19; i++)
+	// {
+	// 	result = get_next_line(fd);
+	// 	printf("%s\n", result);
+	// }
+	result = get_next_line(fd);
+	printf("%s\n", result);
 	close(fd);
 	// system("leaks a.out");
 	return (0);

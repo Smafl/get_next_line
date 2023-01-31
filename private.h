@@ -24,9 +24,9 @@
 # endif
 
 // get_next_line_utils.c
-int		ft_strlcpy(char *dst, char *src, int size);
+int		ft_strlen(const char *str);
 int		ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strljoin(char *s1, char *s2, int len);
 void	*ft_memmove(void *dst, const void *src, int n);
 
 #endif

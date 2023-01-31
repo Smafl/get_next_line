@@ -33,12 +33,12 @@ char	*get_next_line(int fd)
 		end_position = ft_strchr(read_buf, '\n');
 		if (end_position != -1)
 		{
-			ft_strjoin(result, read_buf);
+			ft_strljoin(result, read_buf, end_position);
 			end_position = -1;
 		}
 		else if (end_position == -1)
 		{
-			ft_strjoin(result, read_buf);
+			ft_strljoin(result, read_buf, BUFFER_SIZE);
 			end_position = 0;
 		}
 		free(read_buf);
