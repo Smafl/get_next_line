@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:56:10 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/01/24 18:59:26 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:57:09 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 20
+#  define BUFFER_SIZE 10
 # endif
 
 // get_next_line_utils.c
-int		ft_strlcpy(char *dst, const char *src, int size);
-char	*ft_strchr(const char *s, int c);
+int		ft_strlcpy(char *dst, char *src, int size);
+int		ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_memmove(void *dst, const void *src, int n);
 
