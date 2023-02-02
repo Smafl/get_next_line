@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/01/31 18:44:51 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/02 19:17:18 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(void)
 	// }
 	result = get_next_line(fd);
 	printf("%s\n", result);
+	result = get_next_line(fd);
+	printf("\n%s\n\n", result);
 	close(fd);
 	// system("leaks a.out");
 	return (0);

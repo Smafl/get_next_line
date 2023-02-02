@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/01/31 19:34:49 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/02 21:58:19 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,27 @@ char	*get_next_line(int fd)
 	{
 		read_buf = malloc(sizeof(char) * (BUFFER_SIZE));
 		read_bytes = read(fd, read_buf, BUFFER_SIZE);
+		// printf("result [%s]\n", result);
 		if (read_bytes < BUFFER_SIZE)
 			return (read_buf);
 		end_position = ft_strchr(read_buf, '\n');
-		if (end_position != -1)
+		if (end_position == -1)
 		{
-			ft_strljoin(result, read_buf, end_position);
+			result = ft_strljoin(result, read_buf, BUFFER_SIZE);
+			// printf("1[%s]\n", result);
 			end_position = -1;
 		}
-		else if (end_position == -1)
+		else if (end_position != -1)
 		{
-			ft_strljoin(result, read_buf, BUFFER_SIZE);
+			result = ft_strljoin(result, read_buf, end_position);
+			// printf("2[%s]\n", result);
+			// result = ft_substr(
+			// 		result, end_position, ft_strlen(result) + 1 - end_position);
 			end_position = 0;
 		}
-		free(read_buf);
+		ft_free(&read_buf);
 	}
-	// free(read_buf);
+	ft_free(&read_buf);
 	return (result);
 }
 
