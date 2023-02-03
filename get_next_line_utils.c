@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/02 20:04:33 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:41:22 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*ft_strljoin(char *s1, char *s2, int len)
 	return (result);
 }
 
-char	*ft_substr(char const *s, unsigned int start, int len)
+char	*ft_substr(const char *s, unsigned int start, int len)
 {
 	char	*result;
 	int		i;
@@ -139,5 +139,58 @@ char	*ft_substr(char const *s, unsigned int start, int len)
 		start++;
 	}
 	result[i] = '\0';
+	return (result);
+}
+
+int	ft_strlcpy(char *dst, const char *src, int size)
+{
+	int	len_src;
+
+	len_src = 0;
+	while (src[len_src] != '\0')
+	{
+		if (len_src < size)
+			dst[len_src] = src[len_src];
+		len_src++;
+	}
+	if (size != 0)
+	{
+		if (len_src < size)
+		{
+			dst[len_src] = '\0';
+		}
+		else
+		{
+			dst[size - 1] = '\0';
+		}
+	}
+	return (len_src);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*result;
+	int		len_s1;
+	int		len_s2;
+	int		i_1;
+	int		i_2;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	i_1 = 0;
+	i_2 = 0;
+	result = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (result == NULL)
+		return (NULL);
+	while (s1)
+	{
+		result[i_1] = s1[i_1];
+		i_1++;
+	}
+	while (s2)
+		result[i_1++] = s2[i_2++];
+	result[i_1] = '\0';
 	return (result);
 }

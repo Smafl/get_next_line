@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:56:10 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/02 20:04:46 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:41:18 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ char	*ft_strljoin(char *s1, char *s2, int len);
 void	*ft_memmove(void *dst, const void *src, int n);
 void	*ft_memcpy(void *dst, const void *src, int n);
 char	*ft_substr(char const *s, unsigned int start, int len);
+int		ft_strlcpy(char *dst, const char *src, int size);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
