@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/06 20:59:44 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:25:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ char	*gnl_read_line(int fd, int end_position, char *read_buf, char *result)
 	int	read_bytes;
 	int	len;
 
+	result = malloc(sizeof(char) * (BUFFER_SIZE));
 	while (end_position == -1)
 	{
 		read_buf = malloc(sizeof(char) * (BUFFER_SIZE));
 		read_bytes = read(fd, read_buf, BUFFER_SIZE);
 		if (read_bytes < BUFFER_SIZE)
-			return (read_buf);
+		{
+			result = gnl_strljoin(result, read_buf, read_bytes);
+			return (result);
+		}
 		end_position = gnl_strchr(read_buf, '\n');
 		if (end_position == -1)
 		{
@@ -53,7 +57,6 @@ char	*get_next_line(int fd)
 	read_buf = NULL;
 	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	result = malloc(sizeof(char) * (BUFFER_SIZE));
 	end_position = gnl_strchr(read_buf, '\n');
 	result = gnl_read_line(fd, end_position, read_buf, result);
 	gnl_free(&read_buf);

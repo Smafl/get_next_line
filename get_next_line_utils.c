@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/06 20:50:08 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:14:05 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*gnl_strljoin(char *s1, char *s2, int len)
 		result[i_1++] = s2[i_2++];
 	}
 	result[i_1] = '\0';
+	gnl_free(&s1);
 	return (result);
 }
 
