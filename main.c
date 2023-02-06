@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/06 21:13:53 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:02:02 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ int	main(void)
 	int		fd;
 	char	*result;
 
-	fd = open("text_2.txt", O_RDONLY);
+	fd = open("text.txt", O_RDONLY);
 	for (int i = 0; i < 19; i++)
 	{
 		result = get_next_line(fd);
 		printf("%s", result);
+		free(result);
 	}
 	// result = get_next_line(fd);
 	// printf("%s", result);
 	// result = get_next_line(fd);
 	// printf("%s", result);
 	close(fd);
-	system("leaks a.out");
+	// system("leaks a.out");
 	return (0);
 }
