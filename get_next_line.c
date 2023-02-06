@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/06 14:23:38 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:31:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*read_line(int fd, int end_position, char *read_buf, char *result)
 {
-	int			read_bytes;
+	int	read_bytes;
 
 	while (end_position == -1)
 	{
@@ -28,12 +28,18 @@ char	*read_line(int fd, int end_position, char *read_buf, char *result)
 			result = ft_strljoin(result, read_buf, BUFFER_SIZE);
 			end_position = -1;
 		}
+		// else if (end_position != -1)
+		// {
+		// 	result = ft_strljoin(result, read_buf, end_position);
+		// 	end_position = ft_strchr(result, '\n');
+		// 	end_position = -1;
+		// }
 		else if (end_position != -1)
 		{
 			result = ft_strljoin(result, read_buf, end_position);
 			end_position = ft_strchr(result, '\n');
-			// result = ft_substr(
-			// 		result, end_position, ft_strlen(result) - end_position);
+			result = ft_substr(
+					result, end_position, ft_strlen(result) - end_position);
 			end_position = 0;
 		}
 		ft_free(&read_buf);
