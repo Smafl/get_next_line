@@ -6,24 +6,16 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/03 22:38:20 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:23:38 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
 
-char	*get_next_line(int fd)
+char	*read_line(int fd, int end_position, char *read_buf, char *result)
 {
-	int			end_position;
 	int			read_bytes;
-	char		*read_buf;
-	static char	*result;
 
-	read_buf = NULL;
-	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	result = malloc(sizeof(char) * (BUFFER_SIZE));
-	end_position = ft_strchr(read_buf, '\n');
 	while (end_position == -1)
 	{
 		read_buf = malloc(sizeof(char) * (BUFFER_SIZE));
@@ -40,12 +32,27 @@ char	*get_next_line(int fd)
 		{
 			result = ft_strljoin(result, read_buf, end_position);
 			end_position = ft_strchr(result, '\n');
-			result = ft_substr(
-					result, end_position, ft_strlen(result) - end_position);
+			// result = ft_substr(
+			// 		result, end_position, ft_strlen(result) - end_position);
 			end_position = 0;
 		}
 		ft_free(&read_buf);
 	}
+	return (result);
+}
+
+char	*get_next_line(int fd)
+{
+	int			end_position;
+	char		*read_buf;
+	static char	*result;
+
+	read_buf = NULL;
+	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	result = malloc(sizeof(char) * (BUFFER_SIZE));
+	end_position = ft_strchr(read_buf, '\n');
+	result = read_line(fd, end_position, read_buf, result);
 	ft_free(&read_buf);
 	return (result);
 }
