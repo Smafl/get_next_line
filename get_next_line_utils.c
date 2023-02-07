@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/06 23:00:40 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:43:50 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,35 @@ char	*gnl_strljoin(char *s1, char *s2, int len)
 	}
 	result[i_1] = '\0';
 	gnl_free(&s1);
+	return (result);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*result;
+	int		i_1;
+	int		i_2;
+	int		len_s1;
+	int		len_s2;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len_s1 = gnl_strlen(s1);
+	len_s2 = gnl_strlen(s2);
+	result = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (result == NULL)
+		return (NULL);
+	while (s1[i_1] != '\0')
+	{
+		result[i_1] = s1[i_1];
+		i_1++;
+	}
+	while (s2[i_2] != '\0')
+	{
+		result[i_1++] = s2[i_2++];
+	}
+	result[i_1] = '\0';
+	// gnl_free(&s1);
 	return (result);
 }
 
