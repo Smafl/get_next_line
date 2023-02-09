@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "private.h"
+#include "get_next_line.h"
 
 int	gnl_strlen(const char *str)
 {
@@ -24,16 +24,16 @@ int	gnl_strlen(const char *str)
 
 int	gnl_strchr(const char *s, int c)
 {
-	int	end_position;
+	int	i;
 
 	if (s == NULL)
 		return (0);
-	end_position = 0;
-	while (s[end_position])
+	i = 0;
+	while (s[i])
 	{
-		if (s[end_position] == c)
-			return (end_position + 1);
-		end_position++;
+		if (s[i] == c)
+			return (i);
+		i++;
 	}
 	return (0);
 }
@@ -77,16 +77,14 @@ char	*gnl_strjoin(char *s1, char *s2)
 	char	*result;
 	int		i_1;
 	int		i_2;
-	int		len_s1;
-	int		len_s2;
 
 	if (s1 == NULL)
 		return (gnl_strdup(s2));
-	len_s1 = gnl_strlen(s1);
-	len_s2 = gnl_strlen(s2);
-	result = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	result = malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	if (result == NULL)
 		return (NULL);
+	i_1 = 0;
+	i_2 = 0;
 	while (s1[i_1])
 	{
 		result[i_1++] = s1[i_2++];

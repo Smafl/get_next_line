@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "private.h"
+#include "get_next_line.h"
 
 char	*gnl_get_leftover(int *end_position, char *line)
 {
@@ -28,8 +28,7 @@ char	*gnl_get_leftover(int *end_position, char *line)
 	leftover = malloc(sizeof(char) * left_size);
 	if (leftover == NULL)
 		return (NULL);
-	gnl_memcpy(leftover, line + *end_position, left_size);
-	printf("leftover: %s\n", leftover);
+	gnl_memcpy(leftover, line + *end_position + 1, left_size);
 	return (leftover);
 }
 

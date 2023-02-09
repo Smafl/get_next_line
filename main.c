@@ -21,18 +21,19 @@ int	main(void)
 	int		fd;
 	char	*result;
 
-	fd = open("text_2.txt", O_RDONLY);
-	for (int i = 0; i < 19; i++)
-	{
-		result = get_next_line(fd);
-		// int c = getchar();
-		printf("%s", result);
-		free(result);
-	}
-	// result = get_next_line(fd);
-	// printf("[%s]", result);
-	// result = get_next_line(fd);
-	// printf("[%s]", result);
+	fd = open("text.txt", O_RDONLY);
+	// for (int i = 0; i < 19; i++)
+	// {
+	// 	result = get_next_line(fd);
+	// 	// int c = getchar();
+	// 	printf("%s", result);
+	// 	free(result);
+	// }
+	result = get_next_line(fd);
+	printf("[%s]", result);
+	result = get_next_line(fd);
+	printf("[%s]", result);
+	free(result);
 	// result = get_next_line(fd);
 	// printf("%s", result);
 	// result = get_next_line(fd);
