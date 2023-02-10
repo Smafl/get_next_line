@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/10 21:15:49 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/11 00:07:25 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*gnl_strdup(const char *s1)
 	char	*pnt_s1;
 	char	*str_dup;
 
-	if (!s1)
+	if (s1 == NULL)
 		return (NULL);
 	pnt_s1 = (char *)s1;
 	len = gnl_strlen(pnt_s1);
@@ -83,14 +83,11 @@ char	*gnl_strjoin(char *s1, char *s2)
 	int		i_2;
 
 	if (s1 == NULL)
-	{
-		free(s1);
 		return (gnl_strdup(s2));
-	}
 	result = malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	if (result == NULL)
 	{
-		free(s1);
+		gnl_free(&s1);
 		return (NULL);
 	}
 	i_1 = 0;
@@ -101,6 +98,6 @@ char	*gnl_strjoin(char *s1, char *s2)
 	while (s2[i_2])
 		result[i_1++] = s2[i_2++];
 	result[i_1] = '\0';
-	free(s1);
+	gnl_free(&s1);
 	return (result);
 }

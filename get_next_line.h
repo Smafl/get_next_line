@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:15:27 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/10 21:08:16 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/11 00:02:11 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 // get_next_line.c
 char	*get_next_line(int fd);
+void	gnl_free(char **ptr);
 
 // get_next_line_utils.c
 int		gnl_strlen(const char *str);

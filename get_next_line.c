@@ -6,11 +6,17 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/10 21:53:03 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/11 00:20:01 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	gnl_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+}
 
 char	*gnl_get_leftover(int *end_position, char *line)
 {
@@ -22,17 +28,17 @@ char	*gnl_get_leftover(int *end_position, char *line)
 	left_size = gnl_strlen(line) - *end_position + 1;
 	if (left_size == 1)
 	{
-		free(line);
+		gnl_free(&line);
 		return (NULL);
 	}
 	leftover = malloc(sizeof(char) * left_size);
 	if (leftover == NULL)
 	{
-		free(line);
+		gnl_free(&line);
 		return (NULL);
 	}
 	gnl_memcpy(leftover, line + *end_position, left_size);
-	free(line);
+	gnl_free(&line);
 	return (leftover);
 }
 
@@ -66,16 +72,18 @@ char	*gnl_read_line(int fd, char *line)
 		read_bytes = read(fd, read_buf, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			free(read_buf);
-			free(line);
+			gnl_free(&read_buf);
+			gnl_free(&line);
 			return (NULL);
 		}
 		if (read_bytes == 0)
 			break ;
 		read_buf[read_bytes] = '\0';
 		line = gnl_strjoin(line, read_buf);
+		// if (line == NULL)
+		// 	return (gnl_free(&read_buf), NULL);
 	}
-	free(read_buf);
+	gnl_free(&read_buf);
 	return (line);
 }
 
@@ -83,19 +91,23 @@ char	*get_next_line(int fd)
 {
 	int			end_position;
 	char		*result;
-	static char	*line;
+	static char	*line = NULL;
 
 	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		if (line)
+		if (line != NULL)
 		{
-			free(line);
+			gnl_free(&line);
 			line = NULL;
 		}
 		return (NULL);
 	}
 	line = gnl_read_line(fd, line);
+	// if (line == NULL)
+	// 	return (gnl_free(&line), NULL);
 	result = gnl_get_line(&end_position, line);
+	// if (result == NULL)
+	// 	return (gnl_free(&line), NULL);
 	line = gnl_get_leftover(&end_position, line);
 	return (result);
 }
