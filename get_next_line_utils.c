@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/08 20:42:32 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:50:33 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	gnl_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (i);
+			return (i + 1);
 		i++;
 	}
 	return (0);
@@ -44,6 +44,8 @@ void	*gnl_memcpy(void *dst, const void *src, int n)
 	const unsigned char	*pnt_src;
 	int					i;
 
+	if (dst == NULL || src == NULL)
+		return (NULL);
 	pnt_src = src;
 	pnt_dst = dst;
 	i = 0;
@@ -63,6 +65,8 @@ char	*gnl_strdup(const char *s1)
 	char	*pnt_s1;
 	char	*str_dup;
 
+	if (!s1)
+		return (NULL);
 	pnt_s1 = (char *)s1;
 	len = gnl_strlen(pnt_s1);
 	str_dup = malloc(sizeof(char) * (len + 1));
