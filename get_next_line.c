@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/10 15:47:06 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:58:59 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*gnl_get_leftover(int *end_position, char *line)
 	if (leftover == NULL)
 		return (NULL);
 	gnl_memcpy(leftover, line + *end_position, left_size);
+	free(line);
 	return (leftover);
 }
 
@@ -82,7 +83,14 @@ char	*get_next_line(int fd)
 	static char	*line;
 
 	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+	{
+		if (line)
+		{
+			free(line);
+			line = NULL;
+		}
 		return (NULL);
+	}
 	line = gnl_read_line(fd, line);
 	result = gnl_get_line(&end_position, line);
 	line = gnl_get_leftover(&end_position, line);
