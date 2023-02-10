@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/10 19:58:59 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/10 21:53:03 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*gnl_get_leftover(int *end_position, char *line)
 	}
 	leftover = malloc(sizeof(char) * left_size);
 	if (leftover == NULL)
+	{
+		free(line);
 		return (NULL);
+	}
 	gnl_memcpy(leftover, line + *end_position, left_size);
 	free(line);
 	return (leftover);
