@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/11 23:40:34 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:17:18 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	gnl_free(char **ptr)
 {
@@ -89,20 +89,20 @@ char	*get_next_line(int fd)
 {
 	int			end_position;
 	char		*result;
-	static char	*line = NULL;
+	static char	*line[MAX_FD];
 
 	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		if (line != NULL)
+		if (line[fd] != NULL)
 		{
-			gnl_free(&line);
-			line = NULL;
+			gnl_free(&line[fd]);
+			line[fd] = NULL;
 		}
 		return (NULL);
 	}
-	line = gnl_read_line(fd, line);
-	result = gnl_get_line(&end_position, line);
-	line = gnl_get_leftover(&end_position, line);
+	line[fd] = gnl_read_line(fd, line[fd]);
+	result = gnl_get_line(&end_position, line[fd]);
+	line[fd] = gnl_get_leftover(&end_position, line[fd]);
 	return (result);
 }
 
