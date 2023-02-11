@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/12 00:11:08 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:30:26 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	gnl_strlen(const char *str)
 	return (len);
 }
 
-int	gnl_strchr(const char *s, int c)
+int	gnl_find_chr(const char *s, int c)
 {
 	int	i;
 

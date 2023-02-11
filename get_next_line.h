@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:15:27 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/12 00:10:21 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/12 00:33:41 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	gnl_free(char **ptr);
 
 // get_next_line_utils.c
 int		gnl_strlen(const char *str);
-int		gnl_strchr(const char *s, int c);
+int		gnl_find_chr(const char *s, int c);
 void	*gnl_memcpy(void *dst, const void *src, int n);
 char	*gnl_strdup(const char *s1);
 char	*gnl_strjoin(char *s1, char *s2);
