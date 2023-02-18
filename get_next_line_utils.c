@@ -6,11 +6,17 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:36:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/08 20:42:32 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:23:32 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
+
+void	gnl_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+}
 
 int	gnl_strlen(const char *str)
 {
@@ -22,18 +28,18 @@ int	gnl_strlen(const char *str)
 	return (len);
 }
 
-int	gnl_strchr(const char *s, int c)
+int	gnl_find_chr(const char *s, int c)
 {
-	int	end_position;
+	int	i;
 
 	if (s == NULL)
 		return (0);
-	end_position = 0;
-	while (s[end_position])
+	i = 0;
+	while (s[i])
 	{
-		if (s[end_position] == c)
-			return (end_position + 1);
-		end_position++;
+		if (s[i] == c)
+			return (i + 1);
+		i++;
 	}
 	return (0);
 }
@@ -44,6 +50,8 @@ void	*gnl_memcpy(void *dst, const void *src, int n)
 	const unsigned char	*pnt_src;
 	int					i;
 
+	if (dst == NULL || src == NULL)
+		return (NULL);
 	pnt_src = src;
 	pnt_dst = dst;
 	i = 0;
@@ -63,6 +71,8 @@ char	*gnl_strdup(const char *s1)
 	char	*pnt_s1;
 	char	*str_dup;
 
+	if (s1 == NULL)
+		return (NULL);
 	pnt_s1 = (char *)s1;
 	len = gnl_strlen(pnt_s1);
 	str_dup = malloc(sizeof(char) * (len + 1));
@@ -77,26 +87,23 @@ char	*gnl_strjoin(char *s1, char *s2)
 	char	*result;
 	int		i_1;
 	int		i_2;
-	int		len_s1;
-	int		len_s2;
 
 	if (s1 == NULL)
 		return (gnl_strdup(s2));
-	len_s1 = gnl_strlen(s1);
-	len_s2 = gnl_strlen(s2);
-	result = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	result = malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
 	if (result == NULL)
-		return (NULL);
-	while (s1[i_1])
 	{
-		result[i_1++] = s1[i_2++];
+		gnl_free(&s1);
+		return (NULL);
 	}
+	i_1 = 0;
+	i_2 = 0;
+	while (s1[i_1])
+		result[i_1++] = s1[i_2++];
 	i_2 = 0;
 	while (s2[i_2])
-	{
 		result[i_1++] = s2[i_2++];
-	}
 	result[i_1] = '\0';
-	free(s1);
+	gnl_free(&s1);
 	return (result);
 }

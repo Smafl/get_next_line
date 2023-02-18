@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   private.h                                          :+:      :+:    :+:   */
+/*   private_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 16:56:10 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/18 12:23:38 by ekulichk         ###   ########.fr       */
+/*   Created: 2023/02/18 12:11:43 by ekulichk          #+#    #+#             */
+/*   Updated: 2023/02/18 12:23:55 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRIVATE_H
-# define PRIVATE_H
+#ifndef PRIVATE_BONUS_H
+# define PRIVATE_BONUS_H
 
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,6 +21,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 35
+# endif
+
+# ifndef MAX_FD
+#  define MAX_FD 1024
 # endif
 
 // get_next_line_utils.c
