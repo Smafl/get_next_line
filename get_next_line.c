@@ -6,11 +6,12 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:24:53 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/12 00:34:11 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:55:31 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 void	gnl_free(char **ptr)
 {
@@ -92,6 +93,7 @@ char	*get_next_line(int fd)
 	static char	*line = NULL;
 
 	if (read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+	// if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		if (line != NULL)
 		{
@@ -106,6 +108,21 @@ char	*get_next_line(int fd)
 	return (result);
 }
 
+// int main(void)
+// {
+// 	int fd = open("text.txt", O_RDONLY);
+// 	int	i = 1;
+
+// 	printf("Call %d: %s",i, get_next_line(fd));
+// 	close(fd);
+// 	printf("Call %d: %s",i, get_next_line(fd));
+// 	// while (i < 15)
+// 	// {
+// 	// 	printf("Call %d: %s",i, get_next_line(fd));
+// 	// 	i++;
+// 	// }
+// 	return 0;
+// }
 /*
 cc *.c -L../LeakSanitizer -llsan -lc++
    -Wno-gnu-include-next -I ../LeakSanitizer && ./a.out
